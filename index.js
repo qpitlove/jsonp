@@ -56,7 +56,6 @@ function jsonp(url, opts, fn){
   var script;
   var timer;
 
-
   if (timeout) {
     timer = setTimeout(function(){
       cleanup();
@@ -92,7 +91,8 @@ function jsonp(url, opts, fn){
   script = document.createElement('script');
   script.src = url;
   script.addEventListener('error',function(error){
-    window[id](error);
+    cleanup();
+    if (fn) fn(error);
   });
   target.parentNode.insertBefore(script, target);
 
