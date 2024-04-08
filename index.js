@@ -59,7 +59,7 @@ function jsonp(url, opts, fn){
   if (timeout) {
     timer = setTimeout(function(){
       cleanup();
-      if (fn) fn(new Error('Timeout'));
+      if (fn) fn(new Error('Jsonp Timeout'));
     }, timeout);
   }
 
@@ -92,7 +92,7 @@ function jsonp(url, opts, fn){
   script.src = url;
   script.addEventListener('error',function(event){
     cleanup();
-    if (fn) fn(new Error("Script loading error"));
+    if (fn) fn(new Error("Jsonp Error"));
   });
   target.parentNode.insertBefore(script, target);
 
