@@ -90,9 +90,9 @@ function jsonp(url, opts, fn){
   // create script
   script = document.createElement('script');
   script.src = url;
-  script.addEventListener('error',function(error){
+  script.addEventListener('error',function(event){
     cleanup();
-    if (fn) fn(error);
+    if (fn) fn(new Error("Script loading error"));
   });
   target.parentNode.insertBefore(script, target);
 
